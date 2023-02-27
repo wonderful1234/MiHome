@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="HelpUtils">
+      <UniqueIdentifier>{5746ceed-773d-4a19-9e53-89eb785bd419}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MiHome.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RequestHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XiaoMiLoginHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HashHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Encoded.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EncryptionHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MiHomeHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataTimeHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\RequestHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XiaoMiLoginHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HashHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Encoded.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EncryptionHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataTimeHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MiHomeHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
