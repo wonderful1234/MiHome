@@ -54,7 +54,7 @@ void XiaoMiLoginHelp::LoginFirst(const std::string & userName, std::map<std::str
 
 void XiaoMiLoginHelp::LoginSecond(const std::string & userName, const std::string & passWord, std::map<std::string, std::string>& result)
 {
-	auto passWordMd5 = HashHelp::MD5(passWord);
+	auto passWordMd5 = HashHelp::MD5(passWord.data());
 	std::multimap<std::string, std::string> headers
 	{
 		{"Content-Type","application/x-www-form-urlencoded"},

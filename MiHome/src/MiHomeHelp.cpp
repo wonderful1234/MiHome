@@ -1,17 +1,53 @@
 #include "MiHomeHelp.h"
 #include <random>
 #include "Encoded.h"
-std::string MiHomeHelp::GenerateNonce(long millis)
+#include "HashHelp.h"
+std::string MiHomeHelp::GenerateNonce(long long millis)
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> dis(0, 255);
-	unsigned char nonceBytes[12] = {};
+	unsigned char nonceBytes[13] = {};
 	for (int i = 0; i < 8; i++) {
 		nonceBytes[i] = dis(gen);
 	}
 	int time=static_cast<int>(millis / 60000);
-	std::memcpy(&nonceBytes[8], &time, 4);
-	std::string str = std::string((char*)nonceBytes);
-	return Encoded::EncodedBase64(str);
+	unsigned char bytes[4] = {};
+	std::memcpy(bytes, &time, 4);
+	for (int i = 0; i < 4/2; i++)
+	{
+		auto tmpbyte = bytes[i];
+		bytes[i] = bytes[4 - 1 - i];
+		bytes[4 - 1 - i] = tmpbyte;
+	}
+	std::memcpy(&nonceBytes[8],bytes, 4);
+	return Encoded::EncodedBase64((const char *) nonceBytes);
+}
+
+std::string MiHomeHelp::SignedNonce(const std::string& nonce, const std::string& ssecurity)
+{
+	char * nonceData = new char[nonce.length()]();
+	char * ssecurityData = new char[ssecurity.length()]();
+	Encoded::DecodedBase64(nonce.data(),nonceData);
+	Encoded::DecodedBase64(ssecurity.data(), ssecurityData);
+	int nonceLength = strlen(nonceData);
+	int ssecurityLength = strlen(ssecurityData);
+	int length= nonceLength + ssecurityLength;
+	char * data = new char[length+1]();
+	std::memcpy(data, ssecurityData, ssecurityLength);
+	std::memcpy(data+ssecurityLength, nonceData, nonceLength);
+	auto res=HashHelp::SHA256(data,false);
+	delete[]nonceData;
+	delete[]ssecurityData;
+	delete[]data;
+	nonceData = nullptr;
+	ssecurityData = nullptr;
+	data = nullptr;
+	return std::move(res);
+}
+
+std::string MiHomeHelp::GenerateEncSignature(const std::string & url, const std::string & method, const std::string & signedNonce, const std::multimap<std::string, std::string>& params)
+{
+
+	return std::string();
 }

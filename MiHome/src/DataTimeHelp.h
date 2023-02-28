@@ -4,8 +4,8 @@ class DataTimeHelp
 public:
 	DataTimeHelp()=default;
 	~DataTimeHelp()=default;
-	static long GetTimestampMill();
-	static long  GetTimestampSecond();
+	static long long GetTimestampMill();
+	static long long  GetTimestampSecond();
 
 private:
 

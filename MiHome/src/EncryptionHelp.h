@@ -5,8 +5,8 @@ class EncryptionHelp
 public:
 	EncryptionHelp()=default;
 	~EncryptionHelp()=default;
-	static std::string AES128CBCEncrypt(const std::string& key, const std::string& str, const std::string & iv);
-	static std::string AES128CBCDecrypt(const std::string& key, const std::string& str, const std::string & iv);
+	static void AES128CBCEncrypt(const char * key,const char * str, const char * iv,char * out);
+	static void AES128CBCDecrypt(const char * key, const char * str, const char * iv, char * out);
 	
 
 private:
