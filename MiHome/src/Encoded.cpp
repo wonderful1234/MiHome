@@ -21,7 +21,7 @@ void  Encoded::DecodedBase64(const char*  str, char * out)
 	EVP_DecodeBlock((unsigned char *)out, (const unsigned char*)str, length);
 }
 
-std::string Encoded::ChartoHex(const char * str, int length)
+std::string Encoded::ChartoHex( unsigned char * str, int length)
 {
 	std::string result;
 	const char map[] = "0123456789ABCDEF";

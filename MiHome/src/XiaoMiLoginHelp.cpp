@@ -3,6 +3,7 @@
 #include "HashHelp.h"
 #include "fmt/core.h"
 #include "json.hpp"
+#include "UrlHelp.h"
 std::map<std::string, std::string> XiaoMiLoginHelp::Login(const std::string & userName, const std::string & passWord)
 {
 	std::map<std::string, std::string> result;
@@ -92,10 +93,9 @@ void XiaoMiLoginHelp::LoginSecond(const std::string & userName, const std::strin
 void XiaoMiLoginHelp::LoginThird(std::map<std::string, std::string>& result)
 {
 	auto & location = result["location"];
-	location = location.substr(8);
-	int index = location.find(".com");
-	auto url=location.substr(0, index)+".com";
-	auto path = location.substr(index + 4);
+	auto urlPath=UrlHelp::GetUrlDomainAndPath(location);
+	auto url = std::get<0>(urlPath);
+	auto path = std::get<1>(urlPath);
 	std::multimap<std::string, std::string> headers
 	{
 		{"Content-Type","application/x-www-form-urlencoded"},
