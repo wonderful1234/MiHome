@@ -2,6 +2,8 @@
 #include <random>
 #include "Encoded.h"
 #include "HashHelp.h"
+#include "StringHelp.h"
+#include "UrlHelp.h"
 std::string MiHomeHelp::GenerateNonce(long long millis)
 {
 	std::random_device rd;
@@ -48,6 +50,23 @@ std::string MiHomeHelp::SignedNonce(const std::string& nonce, const std::string&
 
 std::string MiHomeHelp::GenerateEncSignature(const std::string & url, const std::string & method, const std::string & signedNonce, const std::multimap<std::string, std::string>& params)
 {
-
+	auto path=std::get<1>(UrlHelp::GetUrlDomainAndPath(url));
+	if (path.substr(0, 5) == "/app/")
+		path = path.substr(4);
+	std::string methodTmp = method;
+	StringHelp::ToUpper(methodTmp);
+	std::vector<std::string> signatureParams;
+	signatureParams.emplace_back(methodTmp);
+	signatureParams.emplace_back(path);
+	for (auto & item : params)
+	{
+		signatureParams.emplace_back(item.first + "=" + item.second);
+	}
+	std::string signatureString;
+	for (auto & item : signatureParams)
+	{
+		signatureString += item + "&";
+	}
+	signatureString.pop_back();
 	return std::string();
 }

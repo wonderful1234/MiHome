@@ -26,6 +26,7 @@
     <ClCompile Include="src\MiHome.cpp" />
     <ClCompile Include="src\MiHomeHelp.cpp" />
     <ClCompile Include="src\RequestHelp.cpp" />
+    <ClCompile Include="src\StringHelp.cpp" />
     <ClCompile Include="src\UrlHelp.cpp" />
     <ClCompile Include="src\XiaoMiLoginHelp.cpp" />
   </ItemGroup>
@@ -36,6 +37,7 @@
     <ClInclude Include="src\HashHelp.h" />
     <ClInclude Include="src\MiHomeHelp.h" />
     <ClInclude Include="src\RequestHelp.h" />
+    <ClInclude Include="src\StringHelp.h" />
     <ClInclude Include="src\UrlHelp.h" />
     <ClInclude Include="src\XiaoMiLoginHelp.h" />
   </ItemGroup>

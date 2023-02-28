@@ -45,6 +45,9 @@
     <ClCompile Include="src\UrlHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
+    <ClCompile Include="src\StringHelp.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RequestHelp.h">
@@ -69,6 +72,9 @@
       <Filter>HelpUtils</Filter>
     </ClInclude>
     <ClInclude Include="src\UrlHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StringHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
   </ItemGroup>
