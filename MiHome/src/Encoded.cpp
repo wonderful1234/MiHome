@@ -13,9 +13,8 @@ std::string  Encoded::EncodedBase64(const char*  str, int inLen)
 
 std::vector<unsigned char>  Encoded::DecodedBase64(const char*  str, int inLen)
 {
-	std::vector<unsigned char> out;
-	auto outLen=(inLen / 4) * 3;
-	out.resize(outLen);
+	auto outLen = (inLen / 4) * 3;
+	std::vector<unsigned char> out(outLen);
 	auto size=EVP_DecodeBlock(out.data(), (const unsigned char*)str, inLen);
 	while (str[--inLen] == '=')
 	{

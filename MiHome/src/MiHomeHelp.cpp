@@ -31,14 +31,8 @@ std::string MiHomeHelp::SignedNonce(const std::string& nonce, const std::string&
 {
 	auto nonceData=Encoded::DecodedBase64(nonce.data(), nonce.length());
 	auto ssecurityData=Encoded::DecodedBase64(ssecurity.data(), ssecurity.length());
-	int nonceLength = nonceData.size();
-	int ssecurityLength = ssecurityData.size();
-	int length= nonceLength + ssecurityLength;
-	std::vector<unsigned char> data;
-	data.resize(length);
-	std::memcpy(&data, &ssecurityData, ssecurityLength);
-	std::memcpy(&data[ssecurityLength], &nonceData, nonceLength);
-	auto res=HashHelp::SHA256((const char *)data.data(),false);
+	ssecurityData.insert(ssecurityData.end(),nonceData.begin(),nonceData.end());
+	auto res=HashHelp::SHA256((const char *)ssecurityData.data(),false);
 	return std::move(res);
 }
 
