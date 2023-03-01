@@ -30,3 +30,12 @@ void EncryptionHelp::AES128CBCDecrypt(const char * key, const char * str, const 
 	plaintextLen += len;
 	EVP_CIPHER_CTX_free(ctx);
 }
+
+void EncryptionHelp::Rc4Encrypt(const char * key, const char * str, char * out)
+{
+	
+}
+
+void EncryptionHelp::Rc4Decrypt(const char * key, const char * str, char * out)
+{
+}

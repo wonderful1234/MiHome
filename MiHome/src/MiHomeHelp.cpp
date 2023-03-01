@@ -4,6 +4,7 @@
 #include "HashHelp.h"
 #include "StringHelp.h"
 #include "UrlHelp.h"
+#include "EncryptionHelp.h"
 std::string MiHomeHelp::GenerateNonce(long long millis)
 {
 	std::random_device rd;
@@ -23,28 +24,21 @@ std::string MiHomeHelp::GenerateNonce(long long millis)
 		bytes[4 - 1 - i] = tmpbyte;
 	}
 	std::memcpy(&nonceBytes[8],bytes, 4);
-	return Encoded::EncodedBase64((const char *) nonceBytes);
+	return Encoded::EncodedBase64((const char *) nonceBytes,12);
 }
 
 std::string MiHomeHelp::SignedNonce(const std::string& nonce, const std::string& ssecurity)
 {
-	char * nonceData = new char[nonce.length()]();
-	char * ssecurityData = new char[ssecurity.length()]();
-	Encoded::DecodedBase64(nonce.data(),nonceData);
-	Encoded::DecodedBase64(ssecurity.data(), ssecurityData);
-	int nonceLength = strlen(nonceData);
-	int ssecurityLength = strlen(ssecurityData);
+	auto nonceData=Encoded::DecodedBase64(nonce.data(), nonce.length());
+	auto ssecurityData=Encoded::DecodedBase64(ssecurity.data(), ssecurity.length());
+	int nonceLength = nonceData.size();
+	int ssecurityLength = ssecurityData.size();
 	int length= nonceLength + ssecurityLength;
-	char * data = new char[length+1]();
-	std::memcpy(data, ssecurityData, ssecurityLength);
-	std::memcpy(data+ssecurityLength, nonceData, nonceLength);
-	auto res=HashHelp::SHA256(data,false);
-	delete[]nonceData;
-	delete[]ssecurityData;
-	delete[]data;
-	nonceData = nullptr;
-	ssecurityData = nullptr;
-	data = nullptr;
+	std::vector<unsigned char> data;
+	data.resize(length);
+	std::memcpy(&data, &ssecurityData, ssecurityLength);
+	std::memcpy(&data[ssecurityLength], &nonceData, nonceLength);
+	auto res=HashHelp::SHA256((const char *)data.data(),false);
 	return std::move(res);
 }
 
@@ -62,11 +56,43 @@ std::string MiHomeHelp::GenerateEncSignature(const std::string & url, const std:
 	{
 		signatureParams.emplace_back(item.first + "=" + item.second);
 	}
+	signatureParams.emplace_back(signedNonce);
 	std::string signatureString;
 	for (auto & item : signatureParams)
 	{
 		signatureString += item + "&";
 	}
 	signatureString.pop_back();
-	return std::string();
+	return HashHelp::SHA1(signatureString.data(), false);
+}
+
+void MiHomeHelp::GenerateEncParams(const std::string & url, const std::string & method, const std::string & signedNonce, const std::string & nonce, std::multimap<std::string, std::string>& postData, const std::string & ssecurity)
+{
+	postData.emplace("rc4_hash__", GenerateEncSignature(url, method, signedNonce, postData));
+	for (auto & item : postData)
+	{
+		item.second = item.first;
+	}
+	postData.emplace("signature", GenerateEncSignature(url, method, signedNonce, postData));
+	postData.emplace("ssecurity", ssecurity);
+	postData.emplace("_nonce", nonce);
+}
+
+std::vector<std::map<std::string, std::string>> MiHomeHelp::GetDevices(const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken)
+{
+	std::string url = "https://api.io.mi.com/app/home/device_list";
+	std::multimap<std::string, std::string> params = {
+		{"data", "{\"getVirtualModel\":true,\"getHuamiDevices\":1,\"get_split_device\":false,\"support_smart_home\":true}"}
+	};
+	return std::vector<std::map<std::string, std::string>>();
+}
+
+std::string MiHomeHelp::Encrypt(const std::string & password, const std::string & payload)
+{
+	auto passBytes=Encoded::DecodedBase64(password.data(), password.length());
+	char * out = new char[payload.length()]();
+	auto res=Encoded::EncodedBase64(out,payload.length());
+	delete[]out;
+	out = nullptr;
+	return std::move(res);
 }

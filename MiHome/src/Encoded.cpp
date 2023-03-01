@@ -1,24 +1,28 @@
 #include "Encoded.h"
 #include "openssl/evp.h"
-std::string Encoded::EncodedBase64(const char*  str)
+
+std::string  Encoded::EncodedBase64(const char*  str, int inLen)
 {
-	int length = strlen(str);
-	size_t base64_len = (length + 2) / 3 * 4;
-	if (base64_len == 0)
-	{
-		return "";
-	}
-	std::string ret;
-	ret.resize(base64_len);
-	EVP_EncodeBlock((unsigned char*)ret.data(), (unsigned char*)str, length);
-	return std::move(ret);
+	int outLen = (inLen + 2) / 3 * 4;
+	std::string out;
+	out.resize(outLen);
+	EVP_EncodeBlock((unsigned char*)out.data(), (unsigned char*)str, inLen);
+	return out;
+	
 }
 
-void  Encoded::DecodedBase64(const char*  str, char * out)
+std::vector<unsigned char>  Encoded::DecodedBase64(const char*  str, int inLen)
 {
-	int length = strlen(str);
-	size_t destLen = (length / 4) * 3;
-	EVP_DecodeBlock((unsigned char *)out, (const unsigned char*)str, length);
+	std::vector<unsigned char> out;
+	auto outLen=(inLen / 4) * 3;
+	out.resize(outLen);
+	auto size=EVP_DecodeBlock(out.data(), (const unsigned char*)str, inLen);
+	while (str[--inLen] == '=')
+	{
+		size -= 1;
+	}
+	out.resize(size);
+	return std::move(out);
 }
 
 std::string Encoded::ChartoHex( unsigned char * str, int length)
