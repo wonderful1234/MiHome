@@ -3,7 +3,8 @@
 #include "HashHelp.h"
 #include "fmt/core.h"
 #include "json.hpp"
-#include "UrlHelp.h"
+#include "StringHelp.h"
+#include "CommonHelp.hpp"
 std::map<std::string, std::string> XiaoMiLoginHelp::Login(const std::string & userName, const std::string & passWord)
 {
 	std::map<std::string, std::string> result;
@@ -34,7 +35,8 @@ void XiaoMiLoginHelp::LoginFirst(const std::string & userName, std::map<std::str
 		{"Cookie",cookie}
 
 	};
-	auto res=RequestHelp::HttpsGet(accountUrl, headers,443,"/pass/serviceLogin?_json=true&sid=xiaomiio&_locale=zh_CN");
+	auto url=Concat(accountUrl, "/pass/serviceLogin?_json=true&sid=xiaomiio&_locale=zh_CN");
+	auto res=RequestHelp::HttpsGet(url, headers);
 	result["code"] = "00";
 	if (res && res->status==200)
 	{
@@ -55,7 +57,7 @@ void XiaoMiLoginHelp::LoginFirst(const std::string & userName, std::map<std::str
 
 void XiaoMiLoginHelp::LoginSecond(const std::string & userName, const std::string & passWord, std::map<std::string, std::string>& result)
 {
-	auto passWordMd5 = HashHelp::MD5(passWord.data());
+	auto passWordMd5 = HashHelp::MD5(passWord.data(),passWord.size());
 	std::multimap<std::string, std::string> headers
 	{
 		{"Content-Type","application/x-www-form-urlencoded"},
@@ -64,7 +66,9 @@ void XiaoMiLoginHelp::LoginSecond(const std::string & userName, const std::strin
 	auto params = fmt::format("sid={0}&hash={1}&callback={2}&qs={3}&user={4}&_sign={5}&_json=true", result["sid"],passWordMd5,result["callback"], result["qs"], userName, result["sign"]);
 	if (result["havePhoneNumber"] == "1")
 		params += "&cc=+86";
-	auto res=RequestHelp::HttpsPost(accountUrl, params, headers, 443, "/pass/serviceLoginAuth2");
+	auto url = Concat(accountUrl, "/pass/serviceLoginAuth2");
+	/*auto url=accountUrl+"/pass/serviceLoginAuth2";*/
+	auto res=RequestHelp::HttpsPost(url, params, headers);
 	result["code"] = "00";
 	if (res && res->status == 200)
 	{
@@ -92,22 +96,17 @@ void XiaoMiLoginHelp::LoginSecond(const std::string & userName, const std::strin
 
 void XiaoMiLoginHelp::LoginThird(std::map<std::string, std::string>& result)
 {
-	auto & location = result["location"];
-	auto urlPath=UrlHelp::GetUrlDomainAndPath(location);
-	auto url = std::get<0>(urlPath);
-	auto path = std::get<1>(urlPath);
+	auto & url = result["location"];
 	std::multimap<std::string, std::string> headers
 	{
 		{"Content-Type","application/x-www-form-urlencoded"},
 		{"User-Agent","Android-7.1.1-1.0.0-ONEPLUS A3010-136-AABAECECCADEE APP/xiaomi.smarthome APPV/62830"}
 	};
-	auto res = RequestHelp::HttpsGet(url, headers, 443, path);
+	auto res = RequestHelp::HttpsGet(url, headers);
 	result["code"] = "00";
 	if (res && res->status == 200)
 	{
 		result["code"] = "01";
-		auto iter = res->headers.find("Set-Cookie");
-
 		for (auto iter= res->headers.rbegin();iter!=res->headers.rend();++iter)
 		{
 			if (iter->first == "Set-Cookie")

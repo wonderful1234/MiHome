@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ARC4.cpp" />
     <ClCompile Include="src\DataTimeHelp.cpp" />
     <ClCompile Include="src\Encoded.cpp" />
     <ClCompile Include="src\EncryptionHelp.cpp" />
@@ -31,6 +32,8 @@
     <ClCompile Include="src\XiaoMiLoginHelp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ARC4.h" />
+    <ClInclude Include="src\CommonHelp.hpp" />
     <ClInclude Include="src\DataTimeHelp.h" />
     <ClInclude Include="src\Encoded.h" />
     <ClInclude Include="src\EncryptionHelp.h" />

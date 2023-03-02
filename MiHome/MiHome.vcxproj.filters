@@ -48,6 +48,9 @@
     <ClCompile Include="src\StringHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
+    <ClCompile Include="src\ARC4.cpp">
+      <Filter>HelpUtils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RequestHelp.h">
@@ -75,6 +78,12 @@
       <Filter>HelpUtils</Filter>
     </ClInclude>
     <ClInclude Include="src\StringHelp.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ARC4.h">
+      <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CommonHelp.hpp">
       <Filter>HelpUtils</Filter>
     </ClInclude>
   </ItemGroup>

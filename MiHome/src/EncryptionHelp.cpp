@@ -30,25 +30,3 @@ void EncryptionHelp::AES128CBCDecrypt(const char * key, const char * str, const 
 	plaintextLen += len;
 	EVP_CIPHER_CTX_free(ctx);
 }
-
-void EncryptionHelp::Rc4Encrypt(const char * key, const char * str, int inLen)
-{
-	int len = 0;
-	unsigned char tmpIn[1024] = {};
-	unsigned char tmpOut[1024] = {};
-	std::vector<unsigned char> out(inLen+ EVP_MAX_BLOCK_LENGTH);
-	EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
-	EVP_CIPHER_CTX_init(ctx);
-	EVP_EncryptInit_ex(ctx, EVP_rc4(), nullptr, (const unsigned char *)key, nullptr);
-	/*EVP_EncryptUpdate(ctx, tmpOut, &len, tmpIn, 1024);
-	EVP_DecryptFinal_ex(ctx, tmpOut + len, &len);
-	auto  data = out.data();*/
-	auto  data = out.data();
-	EVP_EncryptUpdate(ctx, data, &len, (const unsigned char *)str, inLen);
-	EVP_EncryptFinal_ex(ctx, out.data() + len, &len);
-	EVP_CIPHER_CTX_free(ctx);
-}
-
-void EncryptionHelp::Rc4Decrypt(const char * key, const char * str, char * out)
-{
-}

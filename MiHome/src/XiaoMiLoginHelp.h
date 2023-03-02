@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-const std::string accountUrl = "account.xiaomi.com";
+const std::string accountUrl = "https://account.xiaomi.com";
 class XiaoMiLoginHelp
 {
 public:
