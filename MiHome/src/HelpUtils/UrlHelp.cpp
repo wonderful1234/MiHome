@@ -21,38 +21,93 @@ std::tuple<std::string , std::string > UrlHelp::GetUrlDomainAndPath(const std::s
 
 std::string UrlHelp::UrlEncode(const std::string & str)
 {
-	std::string result = "";
-	for (auto c : str)
+	std::string res;
+	const char *cur = str.c_str();
+	const char *ed = cur + str.size();
+
+	while (cur < ed)
 	{
-		if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~')
-		{
-			result += c;
-		}
+		if (*cur == ' ')
+			res += '+';
+		else if (isalnum(*cur) || *cur == '-' || *cur == '_' || *cur == '.'
+			|| *cur == '!' || *cur == '~' || *cur == '*' || *cur == '\''
+			|| *cur == '(' || *cur == ')' || *cur == ':' || *cur == '/'
+			|| *cur == '@' || *cur == '?' || *cur == '#' || *cur == '&')
+			res += *cur;
 		else
 		{
-			result += '%' + std::string(1, c);
+			res += '%';
+			res += Itoh(((const unsigned char)(*cur)) >> 4);
+			res += Itoh(((const unsigned char)(*cur)) % 16);
 		}
+
+		cur++;
 	}
-	return std::move(result);
+
+	return res;
 }
 
-std::string UrlHelp::UrlDecode(const std::string & str)
+void UrlHelp::UrlDecode(std::string & str)
 {
-	std::string result = "";
-	for (size_t i = 0; i < str.size(); ++i)
+	if (str.empty())
+		return;
+
+	size_t sz = UrlDecode(const_cast<char *>(str.c_str()), str.size());
+
+	str.resize(sz);
+}
+
+size_t UrlHelp::UrlDecode(char * str, size_t len)
+{
+	char *dest = str;
+	char *data = str;
+
+	while (len--)
 	{
-		if (str[i] == '%')
+		if (*data == '%' && len >= 2
+			&& isxdigit(*(data + 1))
+			&& isxdigit(*(data + 2)))
 		{
-			if (i + 2 < str.size())
-			{
-				std::string hex = str.substr(i + 1, 2);
-				char ch = (char)strtol(hex.c_str(), nullptr, 16);
-				result += ch; i += 2;
-			}
+			*dest = Htoi((unsigned char *)data + 1);
+			data += 2;
+			len -= 2;
 		}
-		else {
-			result += str[i];
-		}
+		else if (*data == '+')
+			*dest = ' ';
+		else
+			*dest = *data;
+
+		data++;
+		dest++;
 	}
-	return std::move(result);
+
+	*dest = '\0';
+	return dest - str;
+}
+
+int UrlHelp::Htoi(unsigned char * s)
+{
+
+	int value;
+	int c;
+	c = s[0];
+	if (isupper(c))
+		c = tolower(c);
+
+	value = (c >= '0' && c <= '9' ? c - '0' : c - 'a' + 10) * 16;
+
+	c = s[1];
+	if (isupper(c))
+		c = tolower(c);
+
+	value += (c >= '0' && c <= '9' ? c - '0' : c - 'a' + 10);
+	return value;
+}
+
+char UrlHelp::Itoh(int n)
+{
+	if (n > 9)
+		return n - 10 + 'A';
+
+	return n + '0';
 }
