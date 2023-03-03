@@ -28,4 +28,17 @@ std::vector<std::string> StringHelp::Split(const std::string & str, char sep)
 	return res;
 }
 
+std::vector<unsigned char> StringHelp::HexStringToChar(const std::string & hexStr)
+{
+	std::vector<unsigned char> buffer;
+	for (size_t i = 0; i < hexStr.size();i+=2)
+	{
+		std::string byteString = hexStr.substr(i, 2);
+		auto value=strtol(byteString.c_str(), nullptr, 16);
+		buffer.push_back(static_cast<unsigned char>(value));
+	}
+	buffer.push_back('\0');
+	return buffer;
+}
+
 

@@ -4,6 +4,8 @@
 
 void  EncryptionHelp::AES128CBCEncrypt(const char * key, const char * str, const char * iv, char * out)
 {
+	//+16
+	auto ff=EVP_CIPHER_block_size(EVP_aes_128_cbc());   //plaintext.size() + EVP_CIPHER_block_size(EVP_aes_128_cbc())
 	EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
 	int len = 0;
 	int ciphertextLen = 0;
@@ -19,6 +21,7 @@ void  EncryptionHelp::AES128CBCEncrypt(const char * key, const char * str, const
 
 void EncryptionHelp::AES128CBCDecrypt(const char * key, const char * str, const char * iv, char * out)
 {
+	//+1;   //ciphertext.size()
 	int len = 0;
 	int plaintextLen = 0;
 	int ciphertextLen =strlen(str);
