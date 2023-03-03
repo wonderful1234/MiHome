@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,75 +12,90 @@
     <Filter Include="HelpUtils">
       <UniqueIdentifier>{5746ceed-773d-4a19-9e53-89eb785bd419}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Plugins">
+      <UniqueIdentifier>{0e200c32-6633-40f4-acca-7240b2d17014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\Camera">
+      <UniqueIdentifier>{1cc8487e-439a-41e8-a9e5-221ebca5a937}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MiHome.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\RequestHelp.cpp">
+    <ClCompile Include="src\HelpUtils\ARC4.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\XiaoMiLoginHelp.cpp">
+    <ClCompile Include="src\HelpUtils\DataTimeHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\HashHelp.cpp">
+    <ClCompile Include="src\HelpUtils\Encoded.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\Encoded.cpp">
+    <ClCompile Include="src\HelpUtils\EncryptionHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\EncryptionHelp.cpp">
+    <ClCompile Include="src\HelpUtils\HashHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\MiHomeHelp.cpp">
+    <ClCompile Include="src\HelpUtils\MiHomeHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\DataTimeHelp.cpp">
+    <ClCompile Include="src\HelpUtils\RequestHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\UrlHelp.cpp">
+    <ClCompile Include="src\HelpUtils\StringHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\StringHelp.cpp">
+    <ClCompile Include="src\HelpUtils\UrlHelp.cpp">
       <Filter>HelpUtils</Filter>
     </ClCompile>
-    <ClCompile Include="src\ARC4.cpp">
+    <ClCompile Include="src\HelpUtils\XiaoMiLoginHelp.cpp">
       <Filter>HelpUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plugins\Camera\Camera.cpp">
+      <Filter>Plugins\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RequestHelp.h">
+    <ClInclude Include="src\HelpUtils\ARC4.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\XiaoMiLoginHelp.h">
+    <ClInclude Include="src\HelpUtils\CommonHelp.hpp">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\HashHelp.h">
+    <ClInclude Include="src\HelpUtils\DataTimeHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\Encoded.h">
+    <ClInclude Include="src\HelpUtils\Encoded.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\EncryptionHelp.h">
+    <ClInclude Include="src\HelpUtils\EncryptionHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\DataTimeHelp.h">
+    <ClInclude Include="src\HelpUtils\HashHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\MiHomeHelp.h">
+    <ClInclude Include="src\HelpUtils\MiHomeHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\UrlHelp.h">
+    <ClInclude Include="src\HelpUtils\RequestHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\StringHelp.h">
+    <ClInclude Include="src\HelpUtils\StringHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\ARC4.h">
+    <ClInclude Include="src\HelpUtils\UrlHelp.h">
       <Filter>HelpUtils</Filter>
     </ClInclude>
-    <ClInclude Include="src\CommonHelp.hpp">
+    <ClInclude Include="src\HelpUtils\XiaoMiLoginHelp.h">
       <Filter>HelpUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Plugins\Camera\Camera.h">
+      <Filter>Plugins\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Plugins\Base\ExtractorPluginBase.h">
+      <Filter>Plugins</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

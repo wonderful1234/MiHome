@@ -19,30 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ARC4.cpp" />
-    <ClCompile Include="src\DataTimeHelp.cpp" />
-    <ClCompile Include="src\Encoded.cpp" />
-    <ClCompile Include="src\EncryptionHelp.cpp" />
-    <ClCompile Include="src\HashHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\ARC4.cpp" />
+    <ClCompile Include="src\HelpUtils\DataTimeHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\Encoded.cpp" />
+    <ClCompile Include="src\HelpUtils\EncryptionHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\HashHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\MiHomeHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\RequestHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\StringHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\UrlHelp.cpp" />
+    <ClCompile Include="src\HelpUtils\XiaoMiLoginHelp.cpp" />
     <ClCompile Include="src\MiHome.cpp" />
-    <ClCompile Include="src\MiHomeHelp.cpp" />
-    <ClCompile Include="src\RequestHelp.cpp" />
-    <ClCompile Include="src\StringHelp.cpp" />
-    <ClCompile Include="src\UrlHelp.cpp" />
-    <ClCompile Include="src\XiaoMiLoginHelp.cpp" />
+    <ClCompile Include="src\Plugins\Camera\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ARC4.h" />
-    <ClInclude Include="src\CommonHelp.hpp" />
-    <ClInclude Include="src\DataTimeHelp.h" />
-    <ClInclude Include="src\Encoded.h" />
-    <ClInclude Include="src\EncryptionHelp.h" />
-    <ClInclude Include="src\HashHelp.h" />
-    <ClInclude Include="src\MiHomeHelp.h" />
-    <ClInclude Include="src\RequestHelp.h" />
-    <ClInclude Include="src\StringHelp.h" />
-    <ClInclude Include="src\UrlHelp.h" />
-    <ClInclude Include="src\XiaoMiLoginHelp.h" />
+    <ClInclude Include="src\HelpUtils\ARC4.h" />
+    <ClInclude Include="src\HelpUtils\CommonHelp.hpp" />
+    <ClInclude Include="src\HelpUtils\DataTimeHelp.h" />
+    <ClInclude Include="src\HelpUtils\Encoded.h" />
+    <ClInclude Include="src\HelpUtils\EncryptionHelp.h" />
+    <ClInclude Include="src\HelpUtils\HashHelp.h" />
+    <ClInclude Include="src\HelpUtils\MiHomeHelp.h" />
+    <ClInclude Include="src\HelpUtils\RequestHelp.h" />
+    <ClInclude Include="src\HelpUtils\StringHelp.h" />
+    <ClInclude Include="src\HelpUtils\UrlHelp.h" />
+    <ClInclude Include="src\HelpUtils\XiaoMiLoginHelp.h" />
+    <ClInclude Include="src\Plugins\Base\ExtractorPluginBase.h" />
+    <ClInclude Include="src\Plugins\Camera\Camera.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -117,13 +120,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;openssl.lib;fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;openssl.lib;fmtd.lib;libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /D /Y /C /E "$(SolutionDir)bin" "$(TargetDir)"
@@ -156,7 +159,7 @@ xcopy /D /Y /C /E "$(SolutionDir)files" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -164,7 +167,7 @@ xcopy /D /Y /C /E "$(SolutionDir)files" "$(TargetDir)"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;openssl.lib;fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;openssl.lib;fmt.lib;libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /D /Y /C /E "$(SolutionDir)bin" "$(TargetDir)"

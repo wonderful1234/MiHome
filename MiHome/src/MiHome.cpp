@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "XiaoMiLoginHelp.h"
 #include "MiHomeHelp.h"
+#include "Camera.h"
 int main()
 {
 	/*std::multimap<std::string, std::string> params = {
@@ -11,6 +12,10 @@ int main()
 	{
 		item.second = item.first;
 	}*/
+	{
+		Camera camera;
+		Begin(camera, "", "", "");
+	}
 	XiaoMiLoginHelp::Login("", "");
 }
 
