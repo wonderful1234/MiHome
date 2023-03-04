@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include <vector>
 class EncryptionHelp
 {
 public:
 	EncryptionHelp()=default;
 	~EncryptionHelp()=default;
-	static void AES128CBCEncrypt(const char * key,const char * str, const char * iv,char * out);
-	static void AES128CBCDecrypt(const char * key, const char * str, const char * iv, char * out);
+	static std::vector<unsigned char> AES128CBCEncrypt(const char * key,const char * str, const unsigned char * iv,int inLen);
+	static std::vector<unsigned char> AES128CBCDecrypt(const char * key, const char * str, const unsigned char * iv, int inLen);
 private:
 
 };
