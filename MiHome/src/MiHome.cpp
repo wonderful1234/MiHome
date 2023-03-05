@@ -2,6 +2,7 @@
 #include "XiaoMiLoginHelp.h"
 #include "Camera.h"
 #include "UThreadPool.h"
+#include <experimental/filesystem>
 int main()
 {
 	/*std::multimap<std::string, std::string> params = {
@@ -12,10 +13,15 @@ int main()
 	{
 		item.second = item.first;
 	}*/
-	CTP::UThreadPool tp;
-	int i = 6, j = 3;
-	auto r1 = tp.commit([i, j] { return i - j; });
-	std::cout << r1.get() << std::endl;
+	auto dir=std::experimental::filesystem::current_path();
+	std::experimental::filesystem::create_directory(dir);
+	{
+		CTP::UThreadPool tp;
+		int i = 6, j = 3;
+		auto r1 = tp.commit([i, j] { return i - j; });
+		std::cout << r1.get() << std::endl;
+	}
+	
 	{
 		Camera camera;
 		Begin(camera, "", "", "");
