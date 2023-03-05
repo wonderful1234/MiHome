@@ -47,6 +47,11 @@
     <ClInclude Include="src\Plugins\Base\ExtractorPluginBase.h" />
     <ClInclude Include="src\Plugins\Camera\Camera.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThreadPool\ThreadPool.vcxproj">
+      <Project>{0bf31c60-7493-4c67-ba67-c6636679be33}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{54F517CE-AC51-4C02-A3AC-737D5A96EBEC}</ProjectGuid>
@@ -59,7 +64,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -120,7 +125,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;../ThreadPool/src/UtilsCtrl/ThreadPool</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,7 +165,8 @@ xcopy /D /Y /C /E "$(SolutionDir)files" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;../ThreadPool/src/UtilsCtrl/ThreadPool;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

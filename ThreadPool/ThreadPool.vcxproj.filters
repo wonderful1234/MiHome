@@ -5,13 +5,129 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CBasic">
+      <UniqueIdentifier>{2c6bd6b0-5cf4-4853-a7e8-b5d837873d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilsCtrl">
+      <UniqueIdentifier>{131ca8fc-e0a9-410e-b1eb-45a560d88c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilsCtrl\ThreadPool">
+      <UniqueIdentifier>{e6db2a63-5b73-4b6c-a21f-873ce5f04310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilsCtrl\ThreadPool\Queue">
+      <UniqueIdentifier>{d854ac15-213f-4d35-986e-d465c9935321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilsCtrl\ThreadPool\Task">
+      <UniqueIdentifier>{c0488533-01b6-482d-93f0-68f46587b191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilsCtrl\ThreadPool\Thread">
+      <UniqueIdentifier>{36706597-f0c3-43b9-9ed2-70771f61c84a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\UtilsCtrl\ThreadPool\UThreadPool.cpp">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CBasic\CBasicDefine.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CBasicInclude.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CException.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CFuncType.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CInfoDefine.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CObject.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CStatus.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBasic\CValType.h">
+      <Filter>CBasic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\UAllocator.h">
+      <Filter>UtilsCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\UtilsFunction.h">
+      <Filter>UtilsCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\UtilsDefine.h">
+      <Filter>UtilsCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\UtilsObject.h">
+      <Filter>UtilsCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\UtilsInclude.h">
+      <Filter>UtilsCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\UThreadPoolInclude.h">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\UThreadObject.h">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\UThreadPoolConfig.h">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\UThreadPoolDefine.h">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Queue\UQueueObject.h">
+      <Filter>UtilsCtrl\ThreadPool\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Queue\UAtomicPriorityQueue.h">
+      <Filter>UtilsCtrl\ThreadPool\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Queue\UAtomicQueue.h">
+      <Filter>UtilsCtrl\ThreadPool\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Queue\UWorkStealingQueue.h">
+      <Filter>UtilsCtrl\ThreadPool\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Queue\UQueueInclude.h">
+      <Filter>UtilsCtrl\ThreadPool\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Task\UTask.h">
+      <Filter>UtilsCtrl\ThreadPool\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Task\UTaskGroup.h">
+      <Filter>UtilsCtrl\ThreadPool\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Task\UTaskInclude.h">
+      <Filter>UtilsCtrl\ThreadPool\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Thread\UThreadBase.h">
+      <Filter>UtilsCtrl\ThreadPool\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Thread\UThreadPrimary.h">
+      <Filter>UtilsCtrl\ThreadPool\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Thread\UThreadSecondary.h">
+      <Filter>UtilsCtrl\ThreadPool\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\Thread\UThreadInclude.h">
+      <Filter>UtilsCtrl\ThreadPool\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UtilsCtrl\ThreadPool\UThreadPool.h">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\UtilsCtrl\ThreadPool\UThreadPool.inl">
+      <Filter>UtilsCtrl\ThreadPool</Filter>
+    </None>
   </ItemGroup>
 </Project>

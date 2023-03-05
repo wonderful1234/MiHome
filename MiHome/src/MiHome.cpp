@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include "XiaoMiLoginHelp.h"
-#include "MiHomeHelp.h"
 #include "Camera.h"
+#include "UThreadPool.h"
 int main()
 {
 	/*std::multimap<std::string, std::string> params = {
@@ -12,6 +12,10 @@ int main()
 	{
 		item.second = item.first;
 	}*/
+	CTP::UThreadPool tp;
+	int i = 6, j = 3;
+	auto r1 = tp.commit([i, j] { return i - j; });
+	std::cout << r1.get() << std::endl;
 	{
 		Camera camera;
 		Begin(camera, "", "", "");

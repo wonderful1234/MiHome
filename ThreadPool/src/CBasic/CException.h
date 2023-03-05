@@ -1,0 +1,32 @@
+﻿
+#ifndef CGRAPH_CEXCEPTION_H
+#define CGRAPH_CEXCEPTION_H
+
+#include <string>
+#include <exception>
+
+#include "CInfoDefine.h"
+
+CGRAPH_NAMESPACE_BEGIN
+
+class CEXCEPTION : public std::exception {
+public:
+	explicit CEXCEPTION(const std::string& info = CGRAPH_EMPTY) {
+		info_ = info.empty() ? CGRAPH_BASIC_EXCEPTION : info;
+	}
+
+	/**
+	 * 获取异常信息
+	 * @return
+	 */
+	const char* what() const noexcept override {
+		return info_.c_str();
+	}
+
+private:
+	std::string info_;            // 异常状态信息
+};
+
+CGRAPH_NAMESPACE_END
+
+#endif //CGRAPH_CEXCEPTION_H
