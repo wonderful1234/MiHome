@@ -10,6 +10,7 @@ public:
 	static void ToLower(std::string & str);
 	static std::vector<std::string> Split(const std::string& str, char sep);
 	static std::vector<unsigned char> HexStringToChar(const std::string & hexStr);
+	static bool StartWith(const std::string & str, const std::string & prefix);
 
 private:
 

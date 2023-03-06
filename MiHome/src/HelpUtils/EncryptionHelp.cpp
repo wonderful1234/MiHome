@@ -19,13 +19,13 @@ std::vector<unsigned char>EncryptionHelp::AES128CBCEncrypt(const char * key, con
 
 }
 
- std::vector<unsigned char> EncryptionHelp::AES128CBCDecrypt(const char * key, const char * str, const unsigned char * iv, int inLen)
+ std::vector<unsigned char> EncryptionHelp::AES128CBCDecrypt(const unsigned char * key, const char * str, const unsigned char * iv, int inLen)
  {
 	std::vector<unsigned char> out(inLen +1);
 	int len = 0;
 	int plaintextLen = 0;
 	EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
-	EVP_DecryptInit_ex(ctx,EVP_aes_128_cbc(), nullptr, (const unsigned char *)key, iv);
+	EVP_DecryptInit_ex(ctx,EVP_aes_128_cbc(), nullptr, key, iv);
 	EVP_DecryptUpdate(ctx, out.data(), &len, (const unsigned char *)str, inLen);
 	plaintextLen = len;
 	EVP_DecryptFinal_ex(ctx, &out[plaintextLen], &len);

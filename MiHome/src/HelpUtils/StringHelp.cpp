@@ -41,4 +41,17 @@ std::vector<unsigned char> StringHelp::HexStringToChar(const std::string & hexSt
 	return buffer;
 }
 
+bool StringHelp::StartWith(const std::string & str, const std::string & prefix)
+{
+	size_t prefix_len = prefix.size();
+	if (str.size() < prefix_len)
+		return false;
+	for (size_t i = 0; i < prefix_len; i++)
+	{
+		if (str[i] != prefix[i])
+			return false;
+	}
+	return true;
+}
+
 

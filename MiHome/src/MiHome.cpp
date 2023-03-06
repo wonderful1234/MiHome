@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include "XiaoMiLoginHelp.h"
 #include "Camera.h"
-#include "UThreadPool.h"
 #include <experimental/filesystem>
 int main()
 {
@@ -13,19 +12,14 @@ int main()
 	{
 		item.second = item.first;
 	}*/
-	auto dir=std::experimental::filesystem::current_path();
-	std::experimental::filesystem::create_directory(dir);
+	/*auto dir=std::experimental::filesystem::current_path();
+	std::experimental::filesystem::create_directory(dir);*/
 	{
-		CTP::UThreadPool tp;
-		int i = 6, j = 3;
-		auto r1 = tp.commit([i, j] { return i - j; });
-		std::cout << r1.get() << std::endl;
+		
 	}
-	
 	{
 		Camera camera;
-		Begin(camera, "", "", "");
+		Begin(camera, "17317289056", "qianxin123", "60:7E:A4:4C:07:17");
 	}
-	XiaoMiLoginHelp::Login("", "");
 }
 

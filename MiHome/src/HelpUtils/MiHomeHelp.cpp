@@ -101,6 +101,14 @@ std::vector<std::map<std::string, std::string>> MiHomeHelp::GetDevices(const std
 	return devices;
 }
 
+std::string MiHomeHelp::DealJsonGet(nlohmann::json & obj, const std::string & url, const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken, bool decrypt)
+{
+	auto values = obj.dump();
+	std::multimap<std::string, std::string> postData;
+	postData.emplace("data", values);
+	return EncryptedApiGet(url, postData, ssecurity, cuserId, serviceToken, decrypt);
+}
+
 std::string MiHomeHelp::Encrypt(const std::string & password, const std::string & payload)
 {
 	auto passBytes=Encoded::DecodedBase64(password.data(), password.length());

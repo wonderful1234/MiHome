@@ -13,6 +13,7 @@ public:
 	static std::string GetUserDeviceSetting(const std::string & did, const std::vector<std::string> & key, const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken);
 	static std::string GetUserDeviceData(const std::string & did, const std::string & type, long long beginTime, long long endTime, const std::vector<std::string> & key, const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken);
 	static std::vector<std::map<std::string, std::string>>  GetDevices(const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken);
+	static std::string DealJsonGet(nlohmann::json  & obj, const std::string & url, const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken, bool decrypt = true);
 private:
 	static std::string GenerateNonce(long long millis);
 	static std::string SignedNonce(const std::string& nonce, const std::string& ssecurity);
