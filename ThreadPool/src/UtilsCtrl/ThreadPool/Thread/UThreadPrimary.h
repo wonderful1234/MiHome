@@ -196,6 +196,11 @@ protected:
 		return false;
 	}
 
+	CBool haveTask()
+	{
+		return !work_stealing_queue_.empty();
+	}
+
 private:
 	int index_{ -1 };                                               // 线程index
 	UWorkStealingQueue work_stealing_queue_;                       // 内部队列信息

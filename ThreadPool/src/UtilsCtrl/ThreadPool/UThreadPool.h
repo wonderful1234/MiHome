@@ -105,7 +105,13 @@ public:
 	 * @return
 	 */
 	CStatus destroy() final;
-
+	CBool haveTask()
+	{
+		if (task_queue_.empty() && priority_task_queue_.empty() && std::all_of(primary_threads_.begin(), primary_threads_.end(),
+			[](UThreadPrimaryPtr ptr) { return nullptr != ptr && !ptr->haveTask();}))
+			return false;
+		return true;
+	}
 
 protected:
 	/**

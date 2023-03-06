@@ -116,6 +116,12 @@ public:
 		return result;    // 如果非空，表示盗取成功
 	}
 
+	
+	CBool empty() {
+		CGRAPH_LOCK_GUARD lk(mutex_);
+		return deque_.empty();
+	}
+
 	CGRAPH_NO_ALLOWED_COPY(UWorkStealingQueue)
 
 private:

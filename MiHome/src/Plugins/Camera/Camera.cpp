@@ -6,7 +6,6 @@
 #include "UThreadPool.h"
 #include "StringHelp.h"
 #include "EncryptionHelp.h"
-#include <iostream>
 void Camera::DownLoadData(const std::string & userName, const std::string &  passWord, const std::string & parms)
 {
 	auto loginMessage=XiaoMiLoginHelp::Login(userName, passWord);
@@ -25,8 +24,6 @@ void Camera::DownLoadData(const std::string & userName, const std::string &  pas
 	{
 		tp.commit([&]() {
 			auto fileId = item["fileId"];
-			std::cout << fileId << std::endl;
-
 			auto urls=GetVideoUrl(did, model, fileId, ssecurity, cuserId, serviceToken);
 			auto time = item["createTime"];
 			auto array = StringHelp::Split(urls, '\n');
@@ -46,7 +43,10 @@ void Camera::DownLoadData(const std::string & userName, const std::string &  pas
 			DownloadVideo(time, key, iv, list, "");
 		});
 	}
+	while (tp.haveTask())
+	{
 
+	}
 }
 
 std::tuple<std::string, std::string> Camera::GetCamera(const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken, const std::string & mac)
@@ -152,7 +152,7 @@ std::vector<unsigned char> Camera::HttpGetByte(const std::string & url)
 			data.push_back(c);
 	}
 	data.push_back('\0');
-	return data;
+	return std::move(data);
 
 
 }

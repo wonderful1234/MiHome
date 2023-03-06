@@ -19,7 +19,7 @@ int main()
 	}
 	{
 		Camera camera;
-		Begin(camera, "17317289056", "qianxin123", "60:7E:A4:4C:07:17");
+		Begin(camera, "", "", "60:7E:A4:4C:07:17");
 	}
 }
 
