@@ -1,5 +1,6 @@
 #include "StringHelp.h"
 #include <algorithm>
+#include <sstream>
 void StringHelp::ToUpper(std::string & str)
 {
 	std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c) { return toupper(c); });
@@ -52,6 +53,34 @@ bool StringHelp::StartWith(const std::string & str, const std::string & prefix)
 			return false;
 	}
 	return true;
+}
+
+std::string StringHelp::BigEndianToLittleEndian(const std::string & bigEndianHexString)
+{
+	auto tmpStr = bigEndianHexString;
+	if (tmpStr.size() % 2 != 0)
+		tmpStr = '0' + tmpStr;
+	std::string littleEndianHexString = "";
+	for (size_t i = tmpStr.size() - 2; i >= 0; i -= 2)
+		littleEndianHexString += tmpStr.substr(i, 2);
+	return std::move(littleEndianHexString);
+}
+
+std::string StringHelp::DecNumStrToBigEndianHexStr(long long decimalNum, int length)
+{
+	std::stringstream ss;
+	ss << std::uppercase << std::hex << decimalNum; 
+	std::string hexByteStr = ss.str();
+
+	if (hexByteStr.length() < length) { 
+		hexByteStr = std::string(length - hexByteStr.length(), '0') + hexByteStr;
+	}
+
+	std::string bigEndianString="";
+	for (int i = 0; i < length; i += 2) { 
+		bigEndianString = hexByteStr.substr(i, 2) + bigEndianString;
+	}
+	return bigEndianString;
 }
 
 

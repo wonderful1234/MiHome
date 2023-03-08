@@ -2,6 +2,7 @@
 #include "XiaoMiLoginHelp.h"
 #include "Camera.h"
 #include <experimental/filesystem>
+#include "Lock.h"
 int main()
 {
 	/*std::multimap<std::string, std::string> params = {
@@ -15,11 +16,13 @@ int main()
 	/*auto dir=std::experimental::filesystem::current_path();
 	std::experimental::filesystem::create_directory(dir);*/
 	{
-		
+		Lock lock;
+		Begin(lock, "", "", "60:7E:A4:4C:07:17");
+
 	}
 	{
-		Camera camera;
-		Begin(camera, "", "", "60:7E:A4:4C:07:17");
+		/*Camera camera;
+		Begin(camera, "", "", "60:7E:A4:4C:07:17");*/
 	}
 }
 

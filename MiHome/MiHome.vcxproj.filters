@@ -18,6 +18,12 @@
     <Filter Include="Plugins\Camera">
       <UniqueIdentifier>{1cc8487e-439a-41e8-a9e5-221ebca5a937}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Plugins\Audio">
+      <UniqueIdentifier>{ce5bda18-ceb7-4b18-8fb6-6fedecb02d92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\Lock">
+      <UniqueIdentifier>{2b8f3758-6cc1-4410-80f3-0849e8f062eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MiHome.cpp">
@@ -55,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="src\Plugins\Camera\Camera.cpp">
       <Filter>Plugins\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plugins\Audio\Audio.cpp">
+      <Filter>Plugins\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plugins\Lock\Lock.cpp">
+      <Filter>Plugins\Lock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +108,12 @@
     </ClInclude>
     <ClInclude Include="src\Plugins\Base\ExtractorPluginBase.h">
       <Filter>Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Plugins\Audio\Audio.h">
+      <Filter>Plugins\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Plugins\Lock\Lock.h">
+      <Filter>Plugins\Lock</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -30,7 +30,9 @@
     <ClCompile Include="src\HelpUtils\UrlHelp.cpp" />
     <ClCompile Include="src\HelpUtils\XiaoMiLoginHelp.cpp" />
     <ClCompile Include="src\MiHome.cpp" />
+    <ClCompile Include="src\Plugins\Audio\Audio.cpp" />
     <ClCompile Include="src\Plugins\Camera\Camera.cpp" />
+    <ClCompile Include="src\Plugins\Lock\Lock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\HelpUtils\ARC4.h" />
@@ -44,8 +46,10 @@
     <ClInclude Include="src\HelpUtils\StringHelp.h" />
     <ClInclude Include="src\HelpUtils\UrlHelp.h" />
     <ClInclude Include="src\HelpUtils\XiaoMiLoginHelp.h" />
+    <ClInclude Include="src\Plugins\Audio\Audio.h" />
     <ClInclude Include="src\Plugins\Base\ExtractorPluginBase.h" />
     <ClInclude Include="src\Plugins\Camera\Camera.h" />
+    <ClInclude Include="src\Plugins\Lock\Lock.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThreadPool\ThreadPool.vcxproj">
@@ -125,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;../ThreadPool/src/UtilsCtrl/ThreadPool</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;../ThreadPool/src/UtilsCtrl/ThreadPool;./src/Plugins/Audio;./src/Plugins/Lock</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -165,7 +169,7 @@ xcopy /D /Y /C /E "$(SolutionDir)files" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;../ThreadPool/src/UtilsCtrl/ThreadPool;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;./src/HelpUtils;./src/Plugins/Camera;./src/Plugins/Base;../ThreadPool/src/UtilsCtrl/ThreadPool;./src/Plugins/Audio;./src/Plugins/Lock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4267</DisableSpecificWarnings>
     </ClCompile>
     <Link>

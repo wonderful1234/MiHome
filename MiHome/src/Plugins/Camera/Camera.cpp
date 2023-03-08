@@ -17,14 +17,13 @@ void Camera::DownLoadData(const std::string & userName, const std::string &  pas
 	std::string model = "";
 	std::tie(did, model) = camera;
 	auto videoList=GetVideoList(did, model, ssecurity, cuserId, serviceToken);
-	CTP::UThreadPool tp;
 	std::regex re("AES-128,\\s*URI=\"\"?(https?://[^"",]+)\"\"?,\\s*IV=(?:0x)?(\\w+)");
 	std::smatch match;
-	for (auto& item : videoList)
+	for (auto item : videoList)
 	{
-		tp.commit([&]() {
+		/*tp.commit([&]() {*/
 			auto fileId = item["fileId"];
-			auto urls=GetVideoUrl(did, model, fileId, ssecurity, cuserId, serviceToken);
+			auto urls = GetVideoUrl(did, model, fileId, ssecurity, cuserId, serviceToken);
 			auto time = item["createTime"];
 			auto array = StringHelp::Split(urls, '\n');
 			std::string key = "";
@@ -41,12 +40,12 @@ void Camera::DownLoadData(const std::string & userName, const std::string &  pas
 					list.push_back(array[i]);
 			}
 			DownloadVideo(time, key, iv, list, "");
-		});
+		/*});*/
 	}
-	while (tp.haveTask())
+	/*while (tp.haveTask())
 	{
 
-	}
+	}*/
 }
 
 std::tuple<std::string, std::string> Camera::GetCamera(const std::string & ssecurity, const std::string & cuserId, const std::string & serviceToken, const std::string & mac)
@@ -112,7 +111,7 @@ std::vector<std::map<std::string, std::string>> Camera::GetVideoList(const std::
 				haveNext = false;
 			else
 			{
-				for (auto & item : jsonList)
+				for (auto &item : jsonList)
 				{
 					std::map<std::string, std::string> video;
 					video["fileId"] = item["fileId"];
@@ -149,7 +148,7 @@ std::vector<unsigned char> Camera::HttpGetByte(const std::string & url)
 	{
 		auto body=res->body;
 		for (auto c : body)
-			data.push_back(c);
+			data.push_back((unsigned char)c);
 	}
 	data.push_back('\0');
 	return std::move(data);

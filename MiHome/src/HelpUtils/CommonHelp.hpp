@@ -19,3 +19,12 @@ std::string Concat(Args && ...args)
 	ConcatPR(oss, args ...);
 	return std::move(oss.str());
 }
+
+template<typename T>
+T ParseString(const std::string & str,int type=10)
+{
+	T i;
+	std::stringstream ss(str);
+	ss >> std::setbase(type) >> i;
+	return i;
+}
