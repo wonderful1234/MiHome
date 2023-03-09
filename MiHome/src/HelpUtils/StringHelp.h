@@ -13,6 +13,8 @@ public:
 	static bool StartWith(const std::string & str, const std::string & prefix);
 	static std::string  BigEndianToLittleEndian(const std::string& bigEndianHexString);
 	static std::string DecNumStrToBigEndianHexStr(long long decimalNum, int length);
+	static std::string listGetData(const std::vector<std::string> & list, const std::string& containText, const std::string& removeText = "", bool getNext = false, const std::string & nextContainText = "", bool allMatch = false);
+	static std::string Trim(const std::string& str);
 private:
 
 };

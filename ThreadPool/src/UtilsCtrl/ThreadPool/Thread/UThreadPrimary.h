@@ -94,6 +94,8 @@ protected:
 	 * @return
 	 */
 	CVoid processTask() {
+
+		pool_task_queue_->empty() || work_stealing_queue_.empty();
 		UTask task;
 		if (popTask(task) || popPoolTask(task) || stealTask(task)) {
 			runTask(task);

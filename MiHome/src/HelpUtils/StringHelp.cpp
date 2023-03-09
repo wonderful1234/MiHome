@@ -1,6 +1,7 @@
 #include "StringHelp.h"
 #include <algorithm>
 #include <sstream>
+#include <regex>
 void StringHelp::ToUpper(std::string & str)
 {
 	std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c) { return toupper(c); });
@@ -81,6 +82,128 @@ std::string StringHelp::DecNumStrToBigEndianHexStr(long long decimalNum, int len
 		bigEndianString = hexByteStr.substr(i, 2) + bigEndianString;
 	}
 	return bigEndianString;
+}
+
+std::string StringHelp::listGetData(const std::vector<std::string>& list, const std::string & containText, const std::string & removeText, bool getNext, const std::string & nextContainText, bool allMatch)
+{
+	std::string ret = "";
+	std::regex containReg(containText);
+	std::regex nextContainReg(nextContainText);
+	std::regex removeReg(removeText);
+	std::smatch match;
+
+	auto FindIndexOfReg = [&](std::string str) -> int {
+		auto size = match.size();
+		if (size == 1 && match[0] == str)
+			return 0;
+		for (auto i = 1; i < size; i++)
+		{
+			std::string item = match[i];
+			if (item.empty())
+				continue;
+			auto index = str.find_first_of(item);
+			if (index != -1)
+				return index;
+		}
+		return -1;
+
+	};
+
+	auto removeFReg = [&](std::string &str) {
+
+		auto size = match.size();
+		if (size == 1 && match[0] == str)
+		{
+			str = "";
+			return;
+		}
+		for (auto i = 1; i < size; i++)
+		{
+			std::string item = match[i];
+			if (item.empty())
+				continue;
+			auto index = str.find_first_of(item);
+			if (index != -1)
+			{
+				str.replace(index, index + item.size(), "");
+			}	
+		}
+			
+	};
+
+	for (auto it = list.begin(); it != list.end(); ++it)
+	{
+		if(!std::regex_search(*it, match, containReg))
+			continue;
+		ret = *it;
+		if (getNext)
+		{
+			++it;
+			if (!nextContainText.empty())
+			{
+				if (it == list.end())
+				{
+					if (std::regex_search(ret, match, nextContainReg)) //Õ³Á¬ÁË
+					{
+						auto index = FindIndexOfReg(ret);
+						if (index != -1)
+							ret = ret.substr(index);
+					}
+					else
+					{
+						return "";
+					}
+				}
+				else
+				{
+					if (!std::regex_search(*it, match, nextContainReg) && !std::regex_search(ret, match, nextContainReg))
+						return "";
+					else if (std::regex_search(*it, match, nextContainReg))
+						ret = *it;
+					else if (std::regex_search(ret, match, nextContainReg))
+					{
+						auto index = FindIndexOfReg(ret);
+						if (index != -1)
+							ret = ret.substr(index);
+					}
+
+				}
+			}
+			else
+			{
+				if (it == list.end())
+					return "";
+				ret = *it;
+
+			}
+		}
+		if (allMatch)
+		{
+			if (!std::regex_search(ret, match, nextContainReg))
+				return ret;
+			ret = match[0];
+		}
+		else if (!removeText.empty())
+		{
+			if (std::regex_search(ret, match, removeReg))
+				removeFReg(std::ref(ret));
+		}
+		ret = Trim(ret);
+		if(ret.empty() && it!=list.end())
+			continue;
+		break;
+	}
+	return std::move(ret);
+}
+
+std::string StringHelp::Trim(const std::string & str)
+{
+	size_t first = str.find_first_not_of(' ');
+	if (first == std::string::npos) {
+		return "";
+	}
+	size_t last = str.find_last_not_of(' ');
+	return str.substr(first, last - first + 1);
 }
 
 
