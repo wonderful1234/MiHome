@@ -125,7 +125,7 @@ std::string StringHelp::listGetData(const std::vector<std::string>& list, const 
 			auto index = str.find_first_of(item);
 			if (index != -1)
 			{
-				str.replace(index, index + item.size(), "");
+				str.replace(index, item.size(), "");
 			}	
 		}
 			
